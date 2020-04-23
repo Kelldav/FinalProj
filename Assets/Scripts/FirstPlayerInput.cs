@@ -8,7 +8,7 @@ public class FirstPlayerInput : MonoBehaviour
       private CharacterController controller;
 
       [SerializeField] private float movementSpeed;
-      private bool isJumping=false;
+      //private bool isJumping=false;
       private bool isRunning=false;
       private bool isMoving=false;
       private Rigidbody selfRigidbody;
@@ -16,17 +16,16 @@ public class FirstPlayerInput : MonoBehaviour
       public Fighter owner;
       public float smooth = 1f;
       public float RunSpeed=2f;
-	   public float speed;
-	   public float jumpSpeed;
-	   public float gravity = 20.0F;
-	   private Quaternion lookLeft;
-	   private Quaternion lookRight;
-	   private Vector3 moveDirection = Vector3.zero;
-     private float MovementTimer=0.0f;
-
-
+	    public float speed;
+	    public float jumpSpeed;
+	    public float gravity = 20.0F;
+	    //private Quaternion lookLeft;
+	    //private Quaternion lookRight;
+	    private Vector3 moveDirection = Vector3.zero;
+      private float MovementTimer=0.0f;
       public Vector3 jump;
       Animator animator;
+
       private void Awake() {
           controller = GetComponent<CharacterController>();
           selfRigidbody = GetComponent<Rigidbody>();
@@ -40,8 +39,8 @@ public class FirstPlayerInput : MonoBehaviour
   		  Cursor.visible = false;
   		  Time.timeScale = 1;
 
-  		  lookRight = transform.rotation;
-  		  lookLeft = lookRight * Quaternion.Euler(0, 180, 0);
+  		  //lookRight = transform.rotation;
+  		  //lookLeft = lookRight * Quaternion.Euler(0, 180, 0);
   	  }
       private void Update(){
           // movement
@@ -56,6 +55,7 @@ public class FirstPlayerInput : MonoBehaviour
           //Debug.Log(forwardMovement);
           controller.SimpleMove(forwardMovement * Time.deltaTime);// + rightMovement);
           //JUMP CODE
+          //Dont need it
           if (controller.isGrounded) {
             moveDirection = new Vector3(0, 0, Input.GetAxis("Vertical"));
             moveDirection = transform.TransformDirection(moveDirection);
@@ -67,7 +67,7 @@ public class FirstPlayerInput : MonoBehaviour
           }
           moveDirection.y -= gravity * Time.deltaTime;
           controller.Move(moveDirection * Time.deltaTime);
-          //
+
 
           if(Input.GetKeyUp("space")){
             animator.SetBool("isJumping",false);

@@ -10,22 +10,26 @@ public class HitColider : MonoBehaviour{
     //public Fighter opponent;
     public float hitStun=0.0f;
 
-    void Start(){
-    }
     public void OnTriggerEnter(Collider other){
       somebody = other.gameObject.GetComponent<Fighter>();
-      if(somebody != null && somebody != owner){
-        Debug.Log(somebody + " hit " + punchName);
-        if(somebody.Defense == false)
-          somebody.Health = somebody.Health - damage;
-          hitStun=2.0f;
-          somebody.animator.SetTrigger("isHit");
+      if(owner.Defense == false && somebody.Defense == false){
+        if(somebody != null && somebody != owner){
+          Debug.Log(somebody + " hit " + punchName);
+          if(somebody.Defense == false){
+            somebody.Health = somebody.Health - damage;
+            somebody.animator.SetFloat("HitStun",2.0f);
+            somebody.animator.SetBool("isHit",true);
+          }
+        }
       }
     }
+
     void Update(){
-      if(hitStun>=0.0f)
-      hitStun=hitStun-0.1f;
-      if(hitStun == 0 && somebody != null && somebody != owner)
-        somebody.animator.SetTrigger("isHit");
+      //if(hitStun>0.0f)
+        //hitStun=hitStun-0.1f;
+
+      //if(hitStun <= 0 && somebody != null && somebody != owner)
+        //somebody.animator.SetBool("isHit",false);
     }
+
 }

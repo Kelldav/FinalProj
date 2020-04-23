@@ -34,6 +34,8 @@ public class HudController : MonoBehaviour {
            if(player1roundcount == 2) {
              text.text="GAME OVER \n PLAYER 1 WINS";
              //Load Character Select Screen
+             SceneManager.LoadScene(sceneBuildIndex:0);
+
            }
            else{
             player1.transform.position = new Vector3(260.0f,1.0f,410.16f);
@@ -50,6 +52,8 @@ public class HudController : MonoBehaviour {
          if(player1roundcount == 2) {
            text.text="GAME OVER \n PLAYER 1 WINS";
            //Load Character Select Screen
+           SceneManager.LoadScene(sceneBuildIndex:0);
+
          }
          else{
            text.text="KNOCKOUT";
@@ -70,6 +74,8 @@ public class HudController : MonoBehaviour {
             if(player1roundcount == 2) {
               text.text="GAME OVER \n PLAYER 1 WINS";
               //Load Character Select Screen
+              SceneManager.LoadScene(sceneBuildIndex:0);
+
             }
             else{
             text.text="TIMES UP PLAYER 1 WINS";
@@ -90,6 +96,8 @@ public class HudController : MonoBehaviour {
             if(player1roundcount == 2) {
               text.text="GAME OVER \n PLAYER 1 WINS";
               //Load Character Select Screen
+              SceneManager.LoadScene(sceneBuildIndex:0);
+
             }
             else{
             text.text="TIMES UP PLAYER 2 WINS";
@@ -110,6 +118,7 @@ public class HudController : MonoBehaviour {
             if(player1roundcount == 2) {
               text.text="TIMES UP \n PLAYER 1 WINS";
               //Load Character Select Screen
+              SceneManager.LoadScene(sceneBuildIndex:0);
             }
             else{
             text.text="DRAW";

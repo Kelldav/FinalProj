@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MenuScreen.unity
+    guid: ef5f1b1784d028c4f9bac5d951a635c4
+  - enabled: 1
+    path: Assets/Scenes/KachuVSBrute.unity
+    guid: 0d45126acd70c414e9593babf835c363
   m_configObjects: {}

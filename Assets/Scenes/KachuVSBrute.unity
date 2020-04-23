@@ -3719,12 +3719,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc4a15fd3fd77ab4ba2b8eda53211551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 1
+  movementSpeed: 2
   ComboTimer: 0
   owner: {fileID: 485838810}
   smooth: 1
   RunSpeed: 2
-  speed: 1
+  speed: 2
   jumpSpeed: 8
   gravity: 20
   jump: {x: 0, y: 0, z: 0}
@@ -13427,7 +13427,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1907077392}
-  - component: {fileID: 1907077393}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -13449,19 +13448,6 @@ Transform:
   m_Father: {fileID: 485838807}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1907077393
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1907077391}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 9, y: 2, z: 0.5}
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!4 &1922050549 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4379673244704792, guid: 1be61187b5d765449be824463642cb0f,
@@ -14006,8 +13992,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.1997681, y: 0.14737567, z: 1.449735}
-  m_Center: {x: 0.5619092, y: -0.1019901, z: 0.22486784}
+  m_Size: {x: 0.7420654, y: 0.14737567, z: 0.6391591}
+  m_Center: {x: 0.33305788, y: -0.10199184, z: 0.690245}
 --- !u!1 &1974043963 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100008, guid: b70eb1cf1be37564f8063fba2095584b,
