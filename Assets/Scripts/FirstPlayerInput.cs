@@ -15,13 +15,14 @@ public class FirstPlayerInput : MonoBehaviour
       public float ComboTimer = 0.0f;
       public Fighter owner;
       public float smooth = 1f;
-      public float RunSpeed;
+      public float RunSpeed=2f;
 	   public float speed;
 	   public float jumpSpeed;
 	   public float gravity = 20.0F;
 	   private Quaternion lookLeft;
 	   private Quaternion lookRight;
 	   private Vector3 moveDirection = Vector3.zero;
+     private float MovementTimer=0.0f;
 
 
       public Vector3 jump;
@@ -44,13 +45,16 @@ public class FirstPlayerInput : MonoBehaviour
   	  }
       private void Update(){
           // movement
-
+          MovementTimer= MovementTimer-0.01f;
+          if(MovementTimer <= 0.0f){
+            MovementTimer = 0.0f;
+          }
           float horizontal = Input.GetAxis("Horizontal") * movementSpeed;
           float vertical = Input.GetAxis("Vertical") * movementSpeed;
           Vector3 forwardMovement = transform.forward * vertical;
           Vector3 rightMovement = transform.right * horizontal;
-
-          controller.SimpleMove(forwardMovement);// + rightMovement);
+          //Debug.Log(forwardMovement);
+          controller.SimpleMove(forwardMovement * Time.deltaTime);// + rightMovement);
           //JUMP CODE
           if (controller.isGrounded) {
             moveDirection = new Vector3(0, 0, Input.GetAxis("Vertical"));
@@ -97,6 +101,15 @@ public class FirstPlayerInput : MonoBehaviour
           if(Input.GetKeyUp("a")){
             animator.SetBool("isMovingBack",false);
           }
+          if(Input.GetKeyUp("s")){
+            MovementTimer=3.0f;
+          }
+          if(Input.GetKeyDown("p") && owner.SuperMeter>= 1.0f && MovementTimer > 0.0f){
+             animator.SetTrigger("Super");
+             MovementTimer=0.0f;
+             owner.SuperMeter=0.0f;
+             ComboTimer=5.0f;
+           }
           if(ComboTimer > 0.0f){
             ComboTimer=ComboTimer- (1*Time.deltaTime);
           }
@@ -107,7 +120,7 @@ public class FirstPlayerInput : MonoBehaviour
             animator.SetFloat("Combo Timer",ComboTimer);
             animator.SetBool("Reset",false);
             print("PUNCH 1 ACTIVATED");
-            owner.SuperMeter = owner.SuperMeter + 0.01f;
+            owner.SuperMeter = owner.SuperMeter + 0.05f;
 
             }
 
@@ -125,15 +138,25 @@ public class FirstPlayerInput : MonoBehaviour
               ComboTimer=0.3f;
               animator.SetFloat("Combo Timer",ComboTimer);
               print("PUNCH 3 ACTIVATED");
-              owner.SuperMeter=owner.SuperMeter+0.01f;
+              owner.SuperMeter=owner.SuperMeter+0.05f;
             }
-
+          if(Input.GetKeyDown("i")){
+            animator.SetTrigger("M. Punch");
+            ComboTimer=0.3f;
+            animator.SetFloat("Combo Timer",ComboTimer);
+          }
+          if(Input.GetKeyDown("o")){
+            animator.SetTrigger("H. Punch");
+            ComboTimer=0.3f;
+            animator.SetFloat("Combo Timer",ComboTimer);
+          }
           if(ComboTimer <= 0.0f){
               //print("BACK TO NEUTRAL");
               animator.SetBool("Reset",true);
               animator.ResetTrigger("L. Punch");
               animator.ResetTrigger("M. Punch");
               animator.ResetTrigger("H. Punch");
+              animator.ResetTrigger("Super");
             }
 
             //KICKS
@@ -149,7 +172,7 @@ public class FirstPlayerInput : MonoBehaviour
             if(Input.GetKeyDown("l") && ComboTimer>0.0f){
                 animator.SetTrigger("H. Kick");
                 ComboTimer=0.3f;
-                owner.SuperMeter = owner.SuperMeter + 0.01f;
+                owner.SuperMeter = owner.SuperMeter + 0.05f;
                 animator.SetFloat("Combo Timer",ComboTimer);
                 print("PUNCH 2 ACTIVATED");
               }
@@ -158,6 +181,7 @@ public class FirstPlayerInput : MonoBehaviour
                 animator.SetBool("Reset",true);
                 animator.ResetTrigger("L. Kick");
                 animator.ResetTrigger("H. Kick");
+                animator.ResetTrigger("Super");
               }
 
             //GUARD
