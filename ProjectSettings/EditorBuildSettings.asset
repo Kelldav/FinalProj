@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/KachuVSBrute.unity
     guid: 0d45126acd70c414e9593babf835c363
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 60a0216c63a27714db6a87177d14bce4
   m_configObjects: {}

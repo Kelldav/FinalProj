@@ -40,15 +40,16 @@ public class AIController : MonoBehaviour
     // Update is called once per frame
     void Update(){
       //PRELIMINARY
-      if(Timer >= 10.0f){
+      if(owner.Health >0.0f){
+      if(Timer >= 2.0f){
         //reset timer back to 0 along with action
         Timer = 0.0f;
         owner.animator.SetBool("Block",false);
-        owner.animator.ResetTrigger("Slash");
+        owner.animator.SetBool("Slash",false);
         isActing=false;
         Debug.Log("TICK");
       }
-      Timer=Timer+0.05f;
+      Timer=Timer+0.01f;
       //DECISION TIME
 
       //Do we need to move forward?
@@ -69,33 +70,18 @@ public class AIController : MonoBehaviour
         if(isActing == false){
         //Combat mode
         //Guard or slash?
-        int dTwo=Random.Range(1,4);
-        if((dTwo % 2) == 0){
+        int dTwo=Random.Range(0,5);
+        if(dTwo == 0){
           isActing=true;
-          owner.animator.SetBool("Block",true);
+          owner.animator.SetBool("Slash",true);
         }
         else{
           isActing=true;
-          owner.animator.SetTrigger("Slash");
+          owner.animator.SetBool("Block",true);
         }
 
       }
     }
-      //Timer is to grab a random
-      if((Timer % 3.0f) == 0){
-        //Walk forward
       }
-      if((Timer % 5.0f) == 0){
-        //Walk Back
-      }
-      if((Timer % 7.0f) == 0){
-        //Guard
-
-      }
-
-      //If close to enemy attack
-
-      //If Super is up then use it and buff thyself
-
     }
 }

@@ -18,13 +18,15 @@ public class FirstPlayerInput : MonoBehaviour
       public float RunSpeed=2f;
 	    public float speed;
 	    public float jumpSpeed;
-	    public float gravity = 20.0F;
+	    public float gravity = 9.8F;
 	    //private Quaternion lookLeft;
 	    //private Quaternion lookRight;
 	    private Vector3 moveDirection = Vector3.zero;
       private float MovementTimer=0.0f;
       public Vector3 jump;
       Animator animator;
+
+
 
       private void Awake() {
           controller = GetComponent<CharacterController>();
@@ -176,6 +178,11 @@ public class FirstPlayerInput : MonoBehaviour
                 animator.SetFloat("Combo Timer",ComboTimer);
                 print("PUNCH 2 ACTIVATED");
               }
+              if(Input.GetKeyDown("l")){
+                  animator.SetTrigger("H. Kick");
+                  ComboTimer=0.1f;
+                  animator.SetFloat("Combo Timer",ComboTimer);
+                }
             if(ComboTimer <= 0.0f){
                 //print("BACK TO NEUTRAL");
                 animator.SetBool("Reset",true);

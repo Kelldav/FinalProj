@@ -18,41 +18,54 @@ public class HudController : MonoBehaviour {
   public TextMeshProUGUI countdown;
   private float timer=99.0f;
   private float selfTimer=0.0f;
+  public TextMeshProUGUI p1rounds;
+  public TextMeshProUGUI p2rounds;
   void Update(){
-       //TODO LOAD SCENE
        leftBar.UpdateBar(player1.Health,player1.MaxHealth);
        rightBar.UpdateBar(player2.Health,player2.MaxHealth);
        bottomLeft.UpdateBar(player1.SuperMeter,1.0f);
        bottomRight.UpdateBar(player2.SuperMeter,1.0f);
        timer=timer-0.003f;
        countdown.text = timer.ToString("#");
+       if(player1roundcount == 1){
+         p1rounds.text="X";
+       }
+       if(player2roundcount == 1){
+         p2rounds.text="X";
+       }
+       if(player1roundcount == 2){
+         p1rounds.text="X X";
+       }
+       if(player2roundcount == 2){
+         p2rounds.text="X X";
+       }
        //Check For Death
        if(player1.Health <= 0.0f){
          text.text= "KNOCKOUT";
          selfTimer=selfTimer+0.003f;
          if(selfTimer>=3.0f){
-           if(player1roundcount == 2) {
-             text.text="GAME OVER \n PLAYER 1 WINS";
-             //Load Character Select Screen
-             SceneManager.LoadScene(sceneBuildIndex:0);
 
+           if(player2roundcount == 1) {
+              SceneManager.LoadScene(sceneBuildIndex:2);
            }
+
            else{
             player1.transform.position = new Vector3(260.0f,1.0f,410.16f);
             player2.transform.position = new Vector3(260.0f,1.0f,437.04f);
             player1.Health = player1.MaxHealth;
             player2.Health = player2.MaxHealth;
             timer=99.0f;
-            player1roundcount=player1roundcount+1;
+            player2roundcount=player2roundcount+1;
             text.text="";
+            selfTimer=0.0f;
           }
+
          }
        }
+
        if(player2.Health <= 0.0f){
          if(player1roundcount == 2) {
-           text.text="GAME OVER \n PLAYER 1 WINS";
-           //Load Character Select Screen
-           SceneManager.LoadScene(sceneBuildIndex:0);
+           SceneManager.LoadScene(sceneBuildIndex:2);
 
          }
          else{
@@ -63,18 +76,20 @@ public class HudController : MonoBehaviour {
              player2.transform.position = new Vector3(260.0f,1.0f,437.04f);
              player1.Health = player1.MaxHealth;
              player2.Health = player2.MaxHealth;
-             player2roundcount=player2roundcount+1;
+             player1roundcount=player1roundcount+1;
              timer=99.0f;
              text.text="";
+             selfTimer=0.0f;
            }
         }
+
         //TIMER SCAM
         if(timer==0){
           if(player1.Health > player2.Health){
-            if(player1roundcount == 2) {
+            if(player2roundcount == 2) {
               text.text="GAME OVER \n PLAYER 1 WINS";
               //Load Character Select Screen
-              SceneManager.LoadScene(sceneBuildIndex:0);
+              SceneManager.LoadScene(sceneBuildIndex:2);
 
             }
             else{
@@ -85,9 +100,10 @@ public class HudController : MonoBehaviour {
               player2.transform.position = new Vector3(260.0f,1.0f,437.04f);
               player1.Health = player1.MaxHealth;
               player2.Health = player2.MaxHealth;
-              player1roundcount=player1roundcount+1;
+              player2roundcount=player2roundcount+1;
               timer=99.0f;
               text.text="";
+              selfTimer=0.0f;
               }
             }
           }
@@ -96,7 +112,7 @@ public class HudController : MonoBehaviour {
             if(player1roundcount == 2) {
               text.text="GAME OVER \n PLAYER 1 WINS";
               //Load Character Select Screen
-              SceneManager.LoadScene(sceneBuildIndex:0);
+              SceneManager.LoadScene(sceneBuildIndex:2);
 
             }
             else{
@@ -107,18 +123,17 @@ public class HudController : MonoBehaviour {
               player2.transform.position = new Vector3(260.0f,1.0f,437.04f);
               player1.Health = player1.MaxHealth;
               player2.Health = player2.MaxHealth;
-              player2roundcount=player2roundcount+1;
+              player1roundcount=player1roundcount+1;
               timer=99.0f;
               text.text="";
+              selfTimer=0.0f;
               }
             }
           }
 
           if(player1.Health == player2.Health){
             if(player1roundcount == 2) {
-              text.text="TIMES UP \n PLAYER 1 WINS";
-              //Load Character Select Screen
-              SceneManager.LoadScene(sceneBuildIndex:0);
+              SceneManager.LoadScene(sceneBuildIndex:2);
             }
             else{
             text.text="DRAW";
@@ -132,6 +147,7 @@ public class HudController : MonoBehaviour {
               player1roundcount=player1roundcount+1;
               timer=99.0f;
               text.text="";
+              selfTimer=0.0f;
             }
           }
         }
